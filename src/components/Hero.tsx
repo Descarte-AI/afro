@@ -75,34 +75,6 @@ const Hero = () => {
       productCount: 15,
       popular: true,
     },
-    {
-      id: "clip-ins",
-      name: "Afro Kinky Bulk",
-      description: "Temporary clip-in extensions for instant length",
-      image: "/IMG-20250629-WA0193.jpg",
-      productCount: 20,
-    },
-    {
-      id: "bulk-braiding-hair",
-      name: "Afro Kinky Bulk",
-      description: "High-quality bulk hair perfect for braiding",
-      image: "/IMG-20250629-WA0180.jpg",
-      productCount: 22,
-    },
-    {
-      id: "crochet-hair",
-      name: "Afro Kinky Bulk",
-      description: "Pre-styled crochet hair for quick installation",
-      image: "/WhatsApp Image 2025-06-29 at 14.09.11_581cec0e.jpg",
-      productCount: 16,
-    },
-    {
-      id: "lace-wigs",
-      name: "Afro Kinky Bulk",
-      description: "Natural-looking lace front and full lace wigs",
-      image: "/IMG-20250629-WA0168.jpg",
-      productCount: 14,
-    },
   ];
 
   return (
