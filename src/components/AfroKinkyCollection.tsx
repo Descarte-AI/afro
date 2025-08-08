@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Star, Eye, ShoppingBag } from "lucide-react"
-import { getAllProducts } from "../data/products"
+import { getAllProducts, getFeaturedProducts, getNaturalColorProducts, getFashionColorProducts } from "../data/products"
 import { useCart } from "../context/CartContext"
 
 const AfroKinkyCollection = () => {
@@ -11,13 +11,31 @@ const AfroKinkyCollection = () => {
   const { addToCart } = useCart()
   const [hoveredProduct, setHoveredProduct] = useState<string | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState<{ [key: string]: number }>({})
-  const [showAllProducts, setShowAllProducts] = useState(false)
+  const [activeTab, setActiveTab] = useState<'featured' | 'natural' | 'fashion' | 'all'>('featured')
 
-  // Get all products without length filtering
+  // Get products based on active tab
   const allProducts = getAllProducts()
+  const featuredProducts = getFeaturedProducts()
+  const naturalProducts = getNaturalColorProducts()
+  const fashionProducts = getFashionColorProducts()
 
-  // Show only first 8 products initially, or all if showAllProducts is true
-  const displayedProducts = showAllProducts ? allProducts : allProducts.slice(0, 8)
+  // Determine which products to display based on active tab
+  const getDisplayedProducts = () => {
+    switch (activeTab) {
+      case 'featured':
+        return featuredProducts.slice(0, 8)
+      case 'natural':
+        return naturalProducts
+      case 'fashion':
+        return fashionProducts
+      case 'all':
+        return allProducts
+      default:
+        return featuredProducts.slice(0, 8)
+    }
+  }
+
+  const displayedProducts = getDisplayedProducts()
 
   const handleProductClick = (productId: string) => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -86,8 +104,52 @@ const AfroKinkyCollection = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Afro Kinky Bulk Collection</h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
-            Premium 100% human hair extensions perfect for braiding, dreadlocks, and protective styling
+            Premium 100% human hair extensions in multiple colors - perfect for braiding, dreadlocks, and protective styling
           </p>
+          
+          {/* Category Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+            <button
+              onClick={() => setActiveTab('featured')}
+              className={`px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold text-sm md:text-base transition-all ${
+                activeTab === 'featured'
+                  ? 'bg-gray-900 text-white shadow-lg'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              Featured ({featuredProducts.length})
+            </button>
+            <button
+              onClick={() => setActiveTab('natural')}
+              className={`px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold text-sm md:text-base transition-all ${
+                activeTab === 'natural'
+                  ? 'bg-gray-900 text-white shadow-lg'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              Natural Colors ({naturalProducts.length})
+            </button>
+            <button
+              onClick={() => setActiveTab('fashion')}
+              className={`px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold text-sm md:text-base transition-all ${
+                activeTab === 'fashion'
+                  ? 'bg-gray-900 text-white shadow-lg'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              Fashion Colors ({fashionProducts.length})
+            </button>
+            <button
+              onClick={() => setActiveTab('all')}
+              className={`px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold text-sm md:text-base transition-all ${
+                activeTab === 'all'
+                  ? 'bg-gray-900 text-white shadow-lg'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              All Products ({allProducts.length})
+            </button>
+          </div>
         </div>
 
         {/* Products Grid */}
@@ -227,14 +289,14 @@ const AfroKinkyCollection = () => {
           ))}
         </div>
 
-        {/* View All Products Button */}
-        {!showAllProducts && allProducts.length > 8 && (
+        {/* Show All Button for Featured Tab */}
+        {activeTab === 'featured' && featuredProducts.length > 8 && (
           <div className="text-center mt-12">
             <button
-              onClick={() => setShowAllProducts(true)}
+              onClick={() => setActiveTab('all')}
               className="bg-pink-900 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-pink-800 transition-colors shadow-lg"
             >
-              View All Products ({allProducts.length} total)
+              View All {allProducts.length} Products
             </button>
           </div>
         )}
@@ -242,13 +304,13 @@ const AfroKinkyCollection = () => {
         {/* Call to Action */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-r from-gray-900 to-gray-700 rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">Need Help Choosing the Perfect Hair?</h3>
+            <h3 className="text-2xl font-bold mb-4">Need Help Choosing the Perfect Color & Length?</h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Our hair experts are here to help you find the perfect match for your style and needs.
+              Our hair experts are here to help you find the perfect color and length match for your style and needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://wa.me/+1234567890?text=Hi! I need help choosing the perfect Afro Kinky Bulk hair for my style."
+                href="https://wa.me/+1234567890?text=Hi! I need help choosing the perfect Afro Kinky Bulk hair color and length for my style."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-bold transition-colors duration-300"
@@ -256,7 +318,7 @@ const AfroKinkyCollection = () => {
                 Chat on WhatsApp
               </a>
               <button className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-lg font-bold transition-colors duration-300">
-                View Size Guide
+                View Color & Size Guide
               </button>
             </div>
           </div>

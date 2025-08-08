@@ -14,14 +14,19 @@ const Header = () => {
 
   // Popular searches for afro kinky bulk
   const popularSearches = [
-    'Natural Black', 'Dark Brown', 'Medium Brown', 'Light Brown', 
+    'Natural Black', 'Dark Brown', 'Reddish Brown', 'Burgundy', 'Purple', 'Blue', 'Pink',
     '14 inch', '16 inch', '18 inch', '20 inch', '22 inch', '24 inch'
   ];
 
   const searchSuggestions = [
     { name: 'Natural Black Afro Kinky Bulk', category: 'natural-black', image: '/IMG-20250629-WA0197.jpg', price: 45 },
     { name: 'Dark Brown Afro Kinky Bulk', category: 'dark-brown', image: '/IMG-20250629-WA0183.jpg', price: 48 },
-    { name: 'Medium Brown Afro Kinky Bulk', category: 'medium-brown', image: '/IMG-20250629-WA0200.jpg', price: 52 }
+    { name: 'Medium Brown Afro Kinky Bulk', category: 'medium-brown', image: '/IMG-20250629-WA0200.jpg', price: 52 },
+    { name: 'Reddish Brown Afro Kinky Bulk', category: 'reddish-brown', image: '/auburn_afro_kinky_hair_extensions_for_4c_hair_textures.jpg', price: 55 },
+    { name: 'Burgundy Afro Kinky Bulk', category: 'burgundy', image: '/dark_brown_afro_kinky_bulk_human_hair_for_dreadlocks_black_women.webp', price: 58 },
+    { name: 'Purple Afro Kinky Bulk', category: 'purple', image: '/fluffy-afro-kinky-bulk-for-easy-twist-styling-on-4c-hair.webp', price: 60 },
+    { name: 'Blue Afro Kinky Bulk', category: 'blue', image: '/natural-black-spring-twist-brading-hair-for-protective-hairstyle.jpg', price: 60 },
+    { name: 'Pink Afro Kinky Bulk', category: 'pink', image: '/IMG-20250629-WA0193.jpg', price: 60 }
   ].filter(item => 
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );

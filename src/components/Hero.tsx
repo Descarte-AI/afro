@@ -126,7 +126,7 @@ const Hero = () => {
           </h1>
 
           <p className="text-lg sm:text-xl text-white/90 mb-6 max-w-3xl mx-auto">
-            100% Human Hair • Perfect for Braiding & Dreadlocks • Multiple Colors & Lengths Available
+            100% Human Hair • 11+ Colors Available • Perfect for Braiding & Dreadlocks • Multiple Lengths
           </p>
 
           {/* Call-to-Action Buttons */}
@@ -166,7 +166,7 @@ const Hero = () => {
 
           {/* Customer Proof */}
           <div className="text-white/90">
-            <p className="text-lg sm:text-xl mb-3 font-medium">Trusted by 15,000+ customers worldwide</p>
+            <p className="text-lg sm:text-xl mb-3 font-medium">Trusted by 15,000+ customers worldwide • 11+ Colors Available</p>
             <div className="flex justify-center items-center">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} size={18} className="text-yellow-400 fill-current" />
